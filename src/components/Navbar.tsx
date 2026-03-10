@@ -23,6 +23,9 @@ export default function Navbar() {
               { name: "信息", href: "/info" },
               { name: "AI抠图", href: "/remove-bg" },
               { name: "去水印", href: "/remove-watermark" },
+              { name: "拼图", href: "/stitch" },
+              { name: "水印", href: "/watermark" },
+              { name: "表情包", href: "/meme" },
             ].map((t) => (
               <Link
                 key={t.href}

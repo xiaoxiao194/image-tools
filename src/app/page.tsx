@@ -9,6 +9,9 @@ const tools = [
   { name: "图片信息", desc: "查看图片尺寸、大小、格式等详细信息", href: "/info", icon: "ℹ️", color: "from-emerald-500 to-teal-400" },
   { name: "AI 抠图", desc: "一键去除背景，AI 本地运行，保护隐私", href: "/remove-bg", icon: "✨", color: "from-fuchsia-500 to-pink-400", badge: "AI" },
   { name: "去水印", desc: "涂抹标记水印区域，智能填充修复", href: "/remove-watermark", icon: "🧹", color: "from-sky-500 to-blue-400", badge: "AI" },
+  { name: "拼图拼接", desc: "多张图片横排或竖排拼接，支持间距和背景色", href: "/stitch", icon: "🧩", color: "from-lime-500 to-green-400" },
+  { name: "加水印", desc: "添加文字水印，支持平铺、定位、透明度调节", href: "/watermark", icon: "💧", color: "from-cyan-500 to-blue-400" },
+  { name: "表情包制作", desc: "上传图片添加文字，一秒生成表情包", href: "/meme", icon: "😂", color: "from-yellow-500 to-amber-400" },
 ];
 
 const features = [
