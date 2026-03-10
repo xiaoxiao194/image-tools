@@ -21,6 +21,8 @@ export default function Navbar() {
               { name: "裁剪", href: "/crop" },
               { name: "缩放", href: "/resize" },
               { name: "信息", href: "/info" },
+              { name: "AI抠图", href: "/remove-bg" },
+              { name: "去水印", href: "/remove-watermark" },
             ].map((t) => (
               <Link
                 key={t.href}

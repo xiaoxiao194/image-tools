@@ -7,6 +7,8 @@ const tools = [
   { name: "图片裁剪", desc: "精确裁剪，自定义区域和比例", href: "/crop", icon: "✂️", color: "from-rose-500 to-pink-400" },
   { name: "图片缩放", desc: "按尺寸或比例等比缩放", href: "/resize", icon: "🔍", color: "from-amber-500 to-orange-400" },
   { name: "图片信息", desc: "查看图片尺寸、大小、格式等详细信息", href: "/info", icon: "ℹ️", color: "from-emerald-500 to-teal-400" },
+  { name: "AI 抠图", desc: "一键去除背景，AI 本地运行，保护隐私", href: "/remove-bg", icon: "✨", color: "from-fuchsia-500 to-pink-400", badge: "AI" },
+  { name: "去水印", desc: "涂抹标记水印区域，智能填充修复", href: "/remove-watermark", icon: "🧹", color: "from-sky-500 to-blue-400", badge: "AI" },
 ];
 
 const features = [
@@ -51,7 +53,7 @@ export default function Home() {
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center text-2xl mb-4 shadow-sm`}>
                 {t.icon}
               </div>
-              <h3 className="text-lg font-semibold mb-1.5 text-gray-900">{t.name}</h3>
+              <h3 className="text-lg font-semibold mb-1.5 text-gray-900">{t.name} {(t as any).badge && <span className="inline-block text-xs bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-2 py-0.5 rounded-full ml-1.5 align-middle">{(t as any).badge}</span>}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
             </Link>
           ))}
