@@ -1,6 +1,14 @@
 "use client";
 import { useState, useCallback } from "react";
-import Link from "next/link";
+import DropZone from "@/components/DropZone";
+
+const presets = [
+  { label: "自定义", w: 0, h: 0 },
+  { label: "1080p", w: 1920, h: 1080 },
+  { label: "720p", w: 1280, h: 720 },
+  { label: "公众号封面", w: 900, h: 383 },
+  { label: "头像 400×400", w: 400, h: 400 },
+];
 
 export default function ResizePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -12,9 +20,8 @@ export default function ResizePage() {
   const [result, setResult] = useState<string | null>(null);
   const [imgEl, setImgEl] = useState<HTMLImageElement | null>(null);
 
-  const onFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (!f) return;
+  const onFile = useCallback((files: File[]) => {
+    const f = files[0];
     setFile(f);
     setResult(null);
     const img = new Image();
@@ -35,27 +42,59 @@ export default function ResizePage() {
   }, [imgEl, w, h]);
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
-      <Link href="/" className="text-blue-500 hover:underline text-sm">← 返回首页</Link>
-      <h1 className="text-3xl font-bold mt-4 mb-6">🔍 图片缩放</h1>
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
-        <input type="file" accept="image/*" onChange={onFile} className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-        {file && (
+    <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">图片缩放</h1>
+        <p className="text-gray-500 mt-2">按尺寸或比例等比缩放</p>
+      </div>
+
+      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+        {!file ? (
+          <DropZone onFiles={onFile} />
+        ) : (
           <>
-            <p className="text-xs text-gray-400">原始: {origW} × {origH}</p>
-            <div className="flex items-center gap-3">
-              <label className="text-sm">宽 <input type="number" value={w} onChange={(e) => changeW(+e.target.value)} className="w-24 border rounded px-2 py-1 text-sm ml-1" /></label>
-              <button onClick={() => setLock(!lock)} className="text-lg">{lock ? "🔗" : "🔓"}</button>
-              <label className="text-sm">高 <input type="number" value={h} onChange={(e) => changeH(+e.target.value)} className="w-24 border rounded px-2 py-1 text-sm ml-1" /></label>
+            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-500 text-lg">🖼</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
+                <p className="text-xs text-gray-400">{origW} × {origH} · {(file.size / 1024).toFixed(1)} KB</p>
+              </div>
+              <button onClick={() => { setFile(null); setResult(null); }} className="text-gray-400 hover:text-gray-600 text-sm">更换</button>
             </div>
-            <button onClick={resize} className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors">缩放</button>
+
+            <div>
+              <p className="text-sm text-gray-500 mb-3">常用尺寸</p>
+              <div className="flex gap-2 flex-wrap">
+                {presets.map((p) => (
+                  <button key={p.label} onClick={() => { if (p.w) { setW(p.w); setH(p.h); setLock(false); } else { setW(origW); setH(origH); setLock(true); } }} className="px-4 py-1.5 rounded-lg text-sm border border-gray-200 text-gray-600 hover:border-indigo-300 hover:text-indigo-600 transition-colors">{p.label}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <label className="flex-1">
+                <span className="text-xs text-gray-400 block mb-1">宽度 (px)</span>
+                <input type="number" value={w} onChange={(e) => changeW(+e.target.value)} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
+              </label>
+              <button onClick={() => setLock(!lock)} className="mt-5 w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center text-lg hover:bg-gray-50 transition-colors" title={lock ? "等比锁定" : "自由缩放"}>
+                {lock ? "🔗" : "🔓"}
+              </button>
+              <label className="flex-1">
+                <span className="text-xs text-gray-400 block mb-1">高度 (px)</span>
+                <input type="number" value={h} onChange={(e) => changeH(+e.target.value)} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
+              </label>
+            </div>
+
+            <button onClick={resize} className="btn-primary w-full py-3">缩放</button>
           </>
         )}
       </div>
+
       {result && (
-        <div className="mt-6 bg-white rounded-xl p-4 shadow-sm border border-gray-100 space-y-3">
-          <img src={result} alt="resized" className="max-h-48 rounded-lg border" />
-          <a href={result} download="resized.png" className="text-blue-600 text-sm font-semibold hover:underline">下载</a>
+        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900">缩放结果 <span className="text-sm text-gray-400 font-normal ml-2">{w} × {h}</span></p>
+          <img src={result} alt="resized" className="max-h-48 rounded-xl border border-gray-200" />
+          <a href={result} download="resized.png" className="btn-primary inline-block">下载</a>
         </div>
       )}
     </main>

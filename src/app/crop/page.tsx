@@ -1,29 +1,45 @@
 "use client";
-import { useState, useRef, useCallback, useEffect } from "react";
-import Link from "next/link";
+import { useState, useRef, useCallback } from "react";
+import DropZone from "@/components/DropZone";
+
+const presets = [
+  { label: "自由", w: 0, h: 0 },
+  { label: "1:1", w: 1, h: 1 },
+  { label: "4:3", w: 4, h: 3 },
+  { label: "16:9", w: 16, h: 9 },
+  { label: "3:4", w: 3, h: 4 },
+];
 
 export default function CropPage() {
   const [file, setFile] = useState<File | null>(null);
   const [imgUrl, setImgUrl] = useState("");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0, w: 0, h: 0 });
   const [imgSize, setImgSize] = useState({ w: 0, h: 0 });
-  const [dragging, setDragging] = useState(false);
-  const [start, setStart] = useState({ x: 0, y: 0 });
   const [result, setResult] = useState<string | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
-  const onFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (!f) return;
+  const onFile = useCallback((files: File[]) => {
+    const f = files[0];
     setFile(f);
     setResult(null);
     const url = URL.createObjectURL(f);
     setImgUrl(url);
     const img = new Image();
-    img.onload = () => { setImgSize({ w: img.width, h: img.height }); imgRef.current = img; setCrop({ x: 0, y: 0, w: img.width, h: img.height }); };
+    img.onload = () => {
+      setImgSize({ w: img.width, h: img.height });
+      imgRef.current = img;
+      setCrop({ x: 0, y: 0, w: img.width, h: img.height });
+    };
     img.src = url;
   }, []);
+
+  const applyPreset = (pw: number, ph: number) => {
+    if (!pw || !ph) { setCrop({ x: 0, y: 0, w: imgSize.w, h: imgSize.h }); return; }
+    const ratio = pw / ph;
+    let w = imgSize.w, h = Math.round(w / ratio);
+    if (h > imgSize.h) { h = imgSize.h; w = Math.round(h * ratio); }
+    setCrop({ x: Math.round((imgSize.w - w) / 2), y: Math.round((imgSize.h - h) / 2), w, h });
+  };
 
   const doCrop = useCallback(() => {
     if (!imgRef.current) return;
@@ -35,29 +51,60 @@ export default function CropPage() {
   }, [crop]);
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
-      <Link href="/" className="text-blue-500 hover:underline text-sm">← 返回首页</Link>
-      <h1 className="text-3xl font-bold mt-4 mb-6">✂️ 图片裁剪</h1>
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
-        <input type="file" accept="image/*" onChange={onFile} className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
-        {imgUrl && (
+    <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">图片裁剪</h1>
+        <p className="text-gray-500 mt-2">精确裁剪，自定义区域和比例</p>
+      </div>
+
+      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+        {!file ? (
+          <DropZone onFiles={onFile} />
+        ) : (
           <>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <label className="text-xs text-gray-500">X <input type="number" value={crop.x} onChange={(e) => setCrop({ ...crop, x: +e.target.value })} className="w-full border rounded px-2 py-1 text-sm mt-1" /></label>
-              <label className="text-xs text-gray-500">Y <input type="number" value={crop.y} onChange={(e) => setCrop({ ...crop, y: +e.target.value })} className="w-full border rounded px-2 py-1 text-sm mt-1" /></label>
-              <label className="text-xs text-gray-500">宽 <input type="number" value={crop.w} onChange={(e) => setCrop({ ...crop, w: +e.target.value })} className="w-full border rounded px-2 py-1 text-sm mt-1" /></label>
-              <label className="text-xs text-gray-500">高 <input type="number" value={crop.h} onChange={(e) => setCrop({ ...crop, h: +e.target.value })} className="w-full border rounded px-2 py-1 text-sm mt-1" /></label>
+            <div className="relative">
+              <img src={imgUrl} alt="preview" className="w-full rounded-xl border border-gray-200" />
+              <div className="absolute top-3 right-3 bg-black/60 text-white text-xs px-3 py-1 rounded-full">
+                {imgSize.w} × {imgSize.h}
+              </div>
             </div>
-            <p className="text-xs text-gray-400">原图: {imgSize.w} × {imgSize.h}</p>
-            <img src={imgUrl} alt="preview" className="max-h-64 rounded-lg border" />
-            <button onClick={doCrop} className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors">裁剪</button>
+
+            <div>
+              <p className="text-sm text-gray-500 mb-3">比例预设</p>
+              <div className="flex gap-2 flex-wrap">
+                {presets.map((p) => (
+                  <button key={p.label} onClick={() => applyPreset(p.w, p.h)} className="px-4 py-1.5 rounded-lg text-sm border border-gray-200 text-gray-600 hover:border-indigo-300 hover:text-indigo-600 transition-colors">{p.label}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { label: "X", key: "x" as const },
+                { label: "Y", key: "y" as const },
+                { label: "宽", key: "w" as const },
+                { label: "高", key: "h" as const },
+              ].map((f) => (
+                <label key={f.key} className="block">
+                  <span className="text-xs text-gray-400 mb-1 block">{f.label}</span>
+                  <input type="number" value={crop[f.key]} onChange={(e) => setCrop({ ...crop, [f.key]: +e.target.value })} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400 transition-colors" />
+                </label>
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <button onClick={doCrop} className="btn-primary flex-1 py-3">裁剪</button>
+              <button onClick={() => { setFile(null); setImgUrl(""); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+            </div>
           </>
         )}
       </div>
+
       {result && (
-        <div className="mt-6 bg-white rounded-xl p-4 shadow-sm border border-gray-100 space-y-3">
-          <img src={result} alt="cropped" className="max-h-48 rounded-lg border" />
-          <a href={result} download="cropped.png" className="text-blue-600 text-sm font-semibold hover:underline">下载裁剪结果</a>
+        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900">裁剪结果 <span className="text-sm text-gray-400 font-normal ml-2">{crop.w} × {crop.h}</span></p>
+          <img src={result} alt="cropped" className="max-h-64 rounded-xl border border-gray-200" />
+          <a href={result} download="cropped.png" className="btn-primary inline-block">下载</a>
         </div>
       )}
     </main>
