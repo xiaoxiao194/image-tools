@@ -12,6 +12,9 @@ const tools = [
   { name: "拼图拼接", desc: "多张图片横排或竖排拼接，支持间距和背景色", href: "/stitch", icon: "🧩", color: "from-lime-500 to-green-400" },
   { name: "加水印", desc: "添加文字水印，支持平铺、定位、透明度调节", href: "/watermark", icon: "💧", color: "from-cyan-500 to-blue-400" },
   { name: "表情包制作", desc: "上传图片添加文字，一秒生成表情包", href: "/meme", icon: "😂", color: "from-yellow-500 to-amber-400" },
+  { name: "公众号封面", desc: "一键生成公众号标准尺寸封面图", href: "/wechat-cover", icon: "📐", color: "from-red-500 to-rose-400", badge: "自媒体" },
+  { name: "社交平台适配", desc: "一键适配小红书、抖音、微博等平台尺寸", href: "/social-resize", icon: "📱", color: "from-indigo-500 to-blue-400", badge: "自媒体" },
+  { name: "截图美化", desc: "添加设备框、阴影和渐变背景", href: "/mockup", icon: "🖥️", color: "from-gray-600 to-gray-400", badge: "自媒体" },
 ];
 
 const features = [

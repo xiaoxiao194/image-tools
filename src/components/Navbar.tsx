@@ -26,6 +26,9 @@ export default function Navbar() {
               { name: "拼图", href: "/stitch" },
               { name: "水印", href: "/watermark" },
               { name: "表情包", href: "/meme" },
+              { name: "封面", href: "/wechat-cover" },
+              { name: "适配", href: "/social-resize" },
+              { name: "美化", href: "/mockup" },
             ].map((t) => (
               <Link
                 key={t.href}
