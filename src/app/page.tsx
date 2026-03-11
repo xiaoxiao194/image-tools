@@ -48,10 +48,12 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden pb-12">
         <div className="hero-glow bg-indigo-500" style={{ top: "-200px", left: "20%" }}></div>
         <div className="hero-glow bg-purple-500" style={{ top: "-100px", right: "10%" }}></div>
         <div className="hero-glow bg-blue-400" style={{ bottom: "-200px", left: "50%" }}></div>
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#fafbff] pointer-events-none z-10"></div>
         <div className="max-w-6xl mx-auto px-6 pt-20 pb-24 text-center relative">
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm text-indigo-600 text-sm font-medium px-4 py-1.5 rounded-full mb-8 border border-indigo-100/50 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
