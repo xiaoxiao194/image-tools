@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "PixelKit - 免费在线图片处理工具",
-  description: "免费在线图片压缩、格式转换、裁剪缩放工具。100% 浏览器本地处理，无需上传服务器，保护隐私。",
+  title: "PhotoLab - 免费在线图片处理工具",
+  description: "PhotoLab 免费在线图片压缩、格式转换、裁剪缩放、AI抠图工具。100% 浏览器本地处理，无需上传服务器，保护隐私。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

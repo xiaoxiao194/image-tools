@@ -10,8 +10,8 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 glass-nav">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-lg">P</div>
-          <span className="font-bold text-xl text-gray-900">PixelKit</span>
+          <img src="/logo.svg" alt="PhotoLab" className="w-9 h-9 rounded-xl" />
+          <span className="font-bold text-xl text-gray-900">Photo<span className="gradient-text">Lab</span></span>
         </Link>
         {!isHome && (
           <div className="hidden sm:flex items-center gap-1 text-sm">

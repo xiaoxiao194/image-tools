@@ -7,7 +7,7 @@ type Position = "tile" | "center" | "bottom-right" | "bottom-left" | "top-right"
 export default function WatermarkPage() {
   const [file, setFile] = useState<File | null>(null);
   const [imgEl, setImgEl] = useState<HTMLImageElement | null>(null);
-  const [text, setText] = useState("PixelKit");
+  const [text, setText] = useState("PhotoLab");
   const [fontSize, setFontSize] = useState(24);
   const [color, setColor] = useState("#ffffff");
   const [opacity, setOpacity] = useState(0.5);
