@@ -53,7 +53,7 @@ export default function Home() {
         <div className="hero-glow bg-purple-500" style={{ top: "-100px", right: "10%" }}></div>
         <div className="hero-glow bg-blue-400" style={{ bottom: "-200px", left: "50%" }}></div>
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#fafbff] pointer-events-none z-10"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#fafbff]/70 to-[#fafbff] pointer-events-none z-10"></div>
         <div className="max-w-6xl mx-auto px-6 pt-20 pb-24 text-center relative">
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm text-indigo-600 text-sm font-medium px-4 py-1.5 rounded-full mb-8 border border-indigo-100/50 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
@@ -75,9 +75,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools */}
-      <section id="tools" className="max-w-6xl mx-auto px-6 pb-20">
-        <h2 className="text-2xl font-bold text-center mb-10">选择工具</h2>
+      {/* Tools - 紧接Hero，无间隔 */}
+      <section id="tools" className="max-w-6xl mx-auto px-6 pb-20 -mt-4 relative z-10">
+        <h2 className="text-2xl font-bold text-center mb-10 text-gray-700">选择工具</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {tools.map((t) => (
             <Link key={t.href} href={t.href} className="card-hover block glass-card rounded-2xl p-6">
