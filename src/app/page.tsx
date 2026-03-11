@@ -16,6 +16,8 @@ const tools = [
   { name: "公众号封面", desc: "一键生成公众号标准尺寸封面图", href: "/wechat-cover", icon: "wechatCover", color: "from-red-500 to-rose-400", badge: "自媒体" },
   { name: "社交平台适配", desc: "一键适配小红书、抖音、微博等平台尺寸", href: "/social-resize", icon: "socialResize", color: "from-indigo-500 to-blue-400", badge: "自媒体" },
   { name: "截图美化", desc: "添加设备框、阴影和渐变背景", href: "/mockup", icon: "mockup", color: "from-gray-600 to-gray-400", badge: "自媒体" },
+  { name: "圆角头像", desc: "圆形/圆角头像，支持边框和缩放", href: "/avatar", icon: "avatar", color: "from-pink-500 to-rose-400" },
+  { name: "旋转翻转", desc: "旋转任意角度，水平/垂直翻转", href: "/rotate", icon: "rotate", color: "from-teal-500 to-cyan-400" },
 ];
 
 const featureIcons = {
@@ -62,9 +64,9 @@ export default function Home() {
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-8 tracking-tight leading-tight">
             <span className="gradient-text">专业图片处理</span>
             <br />
-            <span className="text-gray-900">触手可及</span>
+            <span className="text-gray-900 dark:text-white">触手可及</span>
           </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-loose">
+          <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12 leading-loose">
             免费在线图片工具箱，支持压缩、转换、裁剪、缩放等功能。
             <br className="hidden sm:block" />
             <span className="mt-1 inline-block">无需下载软件，打开浏览器即可使用。</span>
@@ -84,8 +86,8 @@ export default function Home() {
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center shadow-sm`}>
                 {icons[t.icon]}
               </div>
-              <h3 className="text-lg font-semibold mb-1.5 text-gray-900 mt-4">{t.name} {(t as any).badge && <span className="inline-block text-xs bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-2 py-0.5 rounded-full ml-1.5 align-middle">{(t as any).badge}</span>}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
+              <h3 className="text-lg font-semibold mb-1.5 text-gray-900 dark:text-white mt-4">{t.name} {(t as any).badge && <span className="inline-block text-xs bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-2 py-0.5 rounded-full ml-1.5 align-middle">{(t as any).badge}</span>}</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{t.desc}</p>
             </Link>
           ))}
         </div>
@@ -100,8 +102,8 @@ export default function Home() {
                 <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center mx-auto mb-4">
                   {f.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1.5">{f.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1.5">{f.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>

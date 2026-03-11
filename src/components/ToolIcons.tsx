@@ -89,6 +89,20 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M8 20h8M12 18v2" stroke="white" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   ),
+  avatar: (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <circle cx="12" cy="10" r="4" stroke="white" strokeWidth="2"/>
+      <path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" opacity="0.3"/>
+    </svg>
+  ),
+  rotate: (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <path d="M1 4v6h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3.51 15a9 9 0 105.64-11.36L1 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
 };
+
 
 export default icons;
