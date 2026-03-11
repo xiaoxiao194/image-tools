@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
@@ -25,7 +25,14 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close menus on route change
+  useEffect(() => {
+    setMoreOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <nav className="sticky top-0 z-[100] glass-nav">
@@ -43,31 +50,16 @@ export default function Navbar() {
                 {t.name}
               </Link>
             ))}
-            {/* More dropdown */}
-            <div className="relative">
-              <button onClick={() => setMenuOpen(!menuOpen)} className={`px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${menuOpen ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"}`}>
-                更多 ▾
-              </button>
-              {menuOpen && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-                  <div className="absolute right-0 top-full mt-2 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 py-2 min-w-[120px]">
-                    {navLinks.slice(8).map((t) => (
-                      <Link key={t.href} href={t.href} onClick={() => setMenuOpen(false)} className={`block px-4 py-2 text-sm transition-colors ${pathname === t.href ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"}`}>
-                        {t.name}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
+            <button onClick={() => setMoreOpen(!moreOpen)} className={`px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${moreOpen ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"}`}>
+              更多 {moreOpen ? "▴" : "▾"}
+            </button>
           </div>
         )}
 
         {/* Mobile menu button */}
         {!isHome && (
-          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} /></svg>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} /></svg>
           </button>
         )}
 
@@ -79,12 +71,27 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Desktop "更多" expand panel - slides down under navbar */}
+      {!isHome && moreOpen && (
+        <div className="hidden lg:block border-t border-gray-100/50 dark:border-gray-700/30">
+          <div className="max-w-6xl mx-auto px-6 py-3">
+            <div className="flex items-center justify-center gap-1 text-sm">
+              {navLinks.slice(8).map((t) => (
+                <Link key={t.href} href={t.href} className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${pathname === t.href ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"}`}>
+                  {t.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile menu */}
-      {!isHome && menuOpen && (
-        <div className="lg:hidden border-t border-gray-100 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg">
+      {!isHome && mobileOpen && (
+        <div className="lg:hidden border-t border-gray-100/50 dark:border-gray-700/30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg">
           <div className="max-w-6xl mx-auto px-6 py-3 grid grid-cols-3 gap-1">
             {navLinks.map((t) => (
-              <Link key={t.href} href={t.href} onClick={() => setMenuOpen(false)} className={`px-3 py-2 rounded-lg text-sm text-center transition-colors ${pathname === t.href ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"}`}>
+              <Link key={t.href} href={t.href} className={`px-3 py-2 rounded-lg text-sm text-center transition-colors ${pathname === t.href ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"}`}>
                 {t.name}
               </Link>
             ))}
