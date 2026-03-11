@@ -35,9 +35,9 @@ export default function Navbar() {
           <span className="font-bold text-xl text-gray-900 dark:text-white">Photo<span className="gradient-text">Lab</span></span>
         </Link>
 
-        {/* Desktop nav - scrollable */}
+        {/* Desktop nav */}
         {!isHome && (
-          <div className="hidden lg:flex items-center gap-0.5 text-sm overflow-x-auto mx-4 flex-1 justify-center">
+          <div className="hidden lg:flex items-center gap-0.5 text-sm mx-4 flex-1 justify-center">
             {navLinks.slice(0, 8).map((t) => (
               <Link key={t.href} href={t.href} className={`px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${pathname === t.href ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"}`}>
                 {t.name}
@@ -45,7 +45,7 @@ export default function Navbar() {
             ))}
             {/* More dropdown */}
             <div className="relative">
-              <button onClick={() => setMenuOpen(!menuOpen)} className="px-2.5 py-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5 transition-colors whitespace-nowrap">
+              <button onClick={() => setMenuOpen(!menuOpen)} className={`px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${menuOpen ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"}`}>
                 更多 ▾
               </button>
               {menuOpen && (
