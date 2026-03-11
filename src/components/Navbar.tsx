@@ -7,7 +7,7 @@ export default function Navbar() {
   const isHome = pathname === "/";
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-100">
+    <nav className="sticky top-0 z-50 glass-nav">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-lg">P</div>

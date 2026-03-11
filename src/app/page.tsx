@@ -28,9 +28,11 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg opacity-5"></div>
+        <div className="hero-glow bg-indigo-500" style={{ top: "-200px", left: "20%" }}></div>
+        <div className="hero-glow bg-purple-500" style={{ top: "-100px", right: "10%" }}></div>
+        <div className="hero-glow bg-blue-400" style={{ bottom: "-200px", left: "50%" }}></div>
         <div className="max-w-6xl mx-auto px-6 pt-20 pb-24 text-center relative">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
+          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm text-indigo-600 text-sm font-medium px-4 py-1.5 rounded-full mb-8 border border-indigo-100/50 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
             100% 浏览器本地处理，无需上传
           </div>
@@ -55,7 +57,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold text-center mb-10">选择工具</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {tools.map((t) => (
-            <Link key={t.href} href={t.href} className="card-hover block bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+            <Link key={t.href} href={t.href} className="card-hover block glass-card rounded-2xl p-6">
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center text-2xl mb-4 shadow-sm`}>
                 {t.icon}
               </div>
@@ -67,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="bg-white border-y border-gray-100">
+      <section className="feature-section">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
             {features.map((f) => (
