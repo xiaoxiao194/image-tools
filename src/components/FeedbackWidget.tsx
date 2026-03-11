@@ -54,22 +54,19 @@ export default function FeedbackWidget() {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating button - right middle */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-[90] w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center"
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-[90] w-10 h-24 rounded-l-xl bg-gradient-to-b from-indigo-500 to-purple-500 text-white shadow-lg hover:shadow-xl hover:w-12 transition-all flex flex-col items-center justify-center gap-1"
         title="意见反馈"
       >
-        {open ? (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-        ) : (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-        )}
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+        <span className="text-xs font-medium" style={{ writingMode: "vertical-rl" }}>反馈</span>
       </button>
 
       {/* Feedback panel */}
       {open && (
-        <div className="fixed bottom-20 right-6 z-[90] w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden fade-in">
+        <div className="fixed top-1/2 right-4 -translate-y-1/2 z-[90] w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden fade-in">
           {submitted ? (
             <div className="p-8 text-center">
               <div className="text-4xl mb-3">🎉</div>
@@ -78,9 +75,14 @@ export default function FeedbackWidget() {
             </div>
           ) : (
             <>
-              <div className="px-5 pt-5 pb-3">
-                <h3 className="font-bold text-gray-900 dark:text-white">意见反馈 💬</h3>
-                <p className="text-xs text-gray-400 mt-1">你的建议对我们很重要</p>
+              <div className="px-5 pt-5 pb-3 flex items-start justify-between">
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white">意见反馈 💬</h3>
+                  <p className="text-xs text-gray-400 mt-1">你的建议对我们很重要</p>
+                </div>
+                <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1 -mr-1 -mt-1">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
               </div>
 
               <div className="px-5 pb-5 space-y-4">
