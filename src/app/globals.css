@@ -8,45 +8,42 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: #fafbff;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.05), transparent),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(59, 130, 246, 0.04), transparent);
-  background-attachment: fixed;
+  background: #f8f9fc;
+  min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark body,
 html.dark body {
-  background: #0f1117;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.12), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.08), transparent),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(59, 130, 246, 0.06), transparent);
+  background: #0b0d14;
   color: #e5e7eb;
 }
 
-/* Subtle grid pattern */
+/* Single unified background layer */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(99, 102, 241, 0.07), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 100% 50%, rgba(168, 85, 247, 0.04), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 0% 80%, rgba(59, 130, 246, 0.03), transparent 60%),
+    linear-gradient(rgba(99, 102, 241, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px;
   pointer-events: none;
   z-index: 0;
 }
-.dark body::before,
+
 html.dark body::before {
-  background-image:
-    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(99, 102, 241, 0.1), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 100% 50%, rgba(168, 85, 247, 0.06), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 0% 80%, rgba(59, 130, 246, 0.04), transparent 60%),
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px;
 }
 
-/* Ensure content is above grid */
 body > * {
   position: relative;
   z-index: 1;
@@ -71,50 +68,62 @@ body > * {
 
 /* Glass navbar */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(248, 249, 252, 0.75);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
-.dark .glass-nav {
-  background: rgba(15, 17, 23, 0.8);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+html.dark .glass-nav {
+  background: rgba(11, 13, 20, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Glass card */
 .glass-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 2px 16px rgba(99, 102, 241, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
-.dark .glass-card {
-  background: rgba(30, 32, 45, 0.7);
-  border: 1px solid rgba(99, 102, 241, 0.1);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+html.dark .glass-card {
+  background: rgba(20, 22, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
-  border-color: rgba(99, 102, 241, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  border-color: rgba(99, 102, 241, 0.12);
+}
+html.dark .card-hover:hover {
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .drop-zone {
-  border: 2px dashed rgba(99, 102, 241, 0.25);
+  border: 2px dashed rgba(99, 102, 241, 0.2);
   border-radius: 1rem;
   transition: all 0.3s ease;
-  background: rgba(99, 102, 241, 0.02);
+  background: rgba(99, 102, 241, 0.015);
 }
 .drop-zone:hover,
 .drop-zone.active {
-  border-color: #6366f1;
-  background: rgba(99, 102, 241, 0.06);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.06);
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(99, 102, 241, 0.04);
+}
+html.dark .drop-zone {
+  border-color: rgba(99, 102, 241, 0.25);
+  background: rgba(99, 102, 241, 0.04);
+}
+html.dark .drop-zone:hover,
+html.dark .drop-zone.active {
+  border-color: #818cf8;
+  background: rgba(99, 102, 241, 0.08);
 }
 
 .btn-primary {
@@ -127,29 +136,18 @@ body > * {
   transition: all 0.2s ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
 }
 .btn-primary:hover {
   opacity: 0.95;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
 }
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
-}
-
-/* Hero glow */
-.hero-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
 }
 
 .fade-in {
@@ -164,25 +162,11 @@ body > * {
   display: none;
 }
 
-/* Feature section */
+/* Feature section - no hard border, just subtle bg shift */
 .feature-section {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(99, 102, 241, 0.06);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.06);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
 }
-.dark .feature-section {
-  background: rgba(15, 17, 23, 0.6);
-  border-top: 1px solid rgba(99, 102, 241, 0.1);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-}
-
-.dark .drop-zone {
-  border-color: rgba(99, 102, 241, 0.3);
-  background: rgba(99, 102, 241, 0.05);
-}
-.dark .drop-zone:hover,
-.dark .drop-zone.active {
-  border-color: #818cf8;
-  background: rgba(99, 102, 241, 0.1);
+html.dark .feature-section {
+  background: rgba(11, 13, 20, 0.4);
 }
