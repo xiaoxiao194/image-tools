@@ -3,21 +3,21 @@ import Link from "next/link";
 import icons from "@/components/ToolIcons";
 
 const tools = [
+  { name: "AI 抠图", desc: "一键去除背景，AI 本地运行，保护隐私", href: "/remove-bg", icon: "removeBg", color: "from-fuchsia-500 to-pink-400", badge: "AI" },
+  { name: "去水印", desc: "涂抹标记水印区域，智能填充修复", href: "/remove-watermark", icon: "removeWatermark", color: "from-sky-500 to-blue-400", badge: "AI" },
   { name: "图片压缩", desc: "智能压缩图片体积，保持高画质，支持批量处理", href: "/compress", icon: "compress", color: "from-blue-500 to-cyan-400" },
   { name: "格式转换", desc: "PNG、JPG、WebP 格式自由互转", href: "/convert", icon: "convert", color: "from-violet-500 to-purple-400" },
   { name: "图片裁剪", desc: "精确裁剪，自定义区域和比例", href: "/crop", icon: "crop", color: "from-rose-500 to-pink-400" },
   { name: "图片缩放", desc: "按尺寸或比例等比缩放", href: "/resize", icon: "resize", color: "from-amber-500 to-orange-400" },
   { name: "图片信息", desc: "查看图片尺寸、大小、格式等详细信息", href: "/info", icon: "info", color: "from-emerald-500 to-teal-400" },
-  { name: "AI 抠图", desc: "一键去除背景，AI 本地运行，保护隐私", href: "/remove-bg", icon: "removeBg", color: "from-fuchsia-500 to-pink-400", badge: "AI" },
-  { name: "去水印", desc: "涂抹标记水印区域，智能填充修复", href: "/remove-watermark", icon: "removeWatermark", color: "from-sky-500 to-blue-400", badge: "AI" },
   { name: "拼图拼接", desc: "多种模板布局，圆角间距随心调", href: "/stitch", icon: "stitch", color: "from-lime-500 to-green-400" },
   { name: "加水印", desc: "添加文字水印，支持平铺、定位、透明度调节", href: "/watermark", icon: "watermark", color: "from-cyan-500 to-blue-400" },
   { name: "表情包制作", desc: "多文本、贴纸、涂鸦、滤镜，打造专属表情包", href: "/meme", icon: "meme", color: "from-yellow-500 to-amber-400" },
+  { name: "圆角头像", desc: "圆形/圆角头像，支持边框和缩放", href: "/avatar", icon: "avatar", color: "from-pink-500 to-rose-400" },
+  { name: "旋转翻转", desc: "旋转任意角度，水平/垂直翻转", href: "/rotate", icon: "rotate", color: "from-teal-500 to-cyan-400" },
   { name: "公众号封面", desc: "一键生成公众号标准尺寸封面图", href: "/wechat-cover", icon: "wechatCover", color: "from-red-500 to-rose-400", badge: "自媒体" },
   { name: "社交平台适配", desc: "一键适配小红书、抖音、微博等平台尺寸", href: "/social-resize", icon: "socialResize", color: "from-indigo-500 to-blue-400", badge: "自媒体" },
   { name: "截图美化", desc: "添加设备框、阴影和渐变背景", href: "/mockup", icon: "mockup", color: "from-gray-600 to-gray-400", badge: "自媒体" },
-  { name: "圆角头像", desc: "圆形/圆角头像，支持边框和缩放", href: "/avatar", icon: "avatar", color: "from-pink-500 to-rose-400" },
-  { name: "旋转翻转", desc: "旋转任意角度，水平/垂直翻转", href: "/rotate", icon: "rotate", color: "from-teal-500 to-cyan-400" },
 ];
 
 const featureIcons = {
