@@ -34,15 +34,15 @@ export default function Home() {
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
             100% 浏览器本地处理，无需上传
           </div>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 tracking-tight">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mb-8 tracking-tight leading-tight">
             <span className="gradient-text">专业图片处理</span>
             <br />
             <span className="text-gray-900">触手可及</span>
           </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-loose">
             免费在线图片工具箱，支持压缩、转换、裁剪、缩放等功能。
             <br className="hidden sm:block" />
-            无需下载软件，打开浏览器即可使用。
+            <span className="mt-1 inline-block">无需下载软件，打开浏览器即可使用。</span>
           </p>
           <Link href="#tools" className="btn-primary inline-block text-base px-8 py-3">
             开始使用 →
