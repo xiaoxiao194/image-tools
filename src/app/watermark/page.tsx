@@ -117,34 +117,34 @@ export default function WatermarkPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">加水印</h1>
-        <p className="text-gray-500 mt-2">添加文字水印，支持平铺、定位、透明度调节</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">加水印</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">添加文字水印，支持平铺、定位、透明度调节</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
           <>
-            <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50 flex justify-center">
+            <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50 flex justify-center">
               <canvas ref={canvasRef} className="max-w-full" />
             </div>
 
             <div className="space-y-4">
               <label className="block">
                 <span className="text-xs text-gray-400 mb-1 block">水印文字</span>
-                <input type="text" value={text} onChange={(e) => setText(e.target.value)} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
+                <input type="text" value={text} onChange={(e) => setText(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
               </label>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <label className="block">
                   <span className="text-xs text-gray-400 mb-1 block">字号</span>
-                  <input type="number" min="10" max="200" value={fontSize} onChange={(e) => setFontSize(+e.target.value)} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
+                  <input type="number" min="10" max="200" value={fontSize} onChange={(e) => setFontSize(+e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-400" />
                 </label>
                 <label className="block">
                   <span className="text-xs text-gray-400 mb-1 block">颜色</span>
                   <div className="flex items-center gap-2">
-                    <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer" />
+                    <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-600 cursor-pointer" />
                   </div>
                 </label>
                 <label className="block">
@@ -169,16 +169,16 @@ export default function WatermarkPage() {
 
             <div className="flex gap-3">
               <button onClick={generate} className="btn-primary flex-1 py-3">生成水印图片</button>
-              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">重选</button>
             </div>
           </>
         )}
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
-          <p className="font-semibold text-gray-900">生成结果</p>
-          <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900 dark:text-white">生成结果</p>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
             <img src={result} alt="watermarked" className="w-full max-h-72 object-contain" />
           </div>
           <a href={result} download="watermarked.png" className="btn-primary inline-block">下载</a>

@@ -327,11 +327,11 @@ export default function StitchPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">拼图拼接</h1>
-        <p className="text-gray-500 mt-2">多种模板布局，圆角间距随心调，拼出好看的图</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">拼图拼接</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">多种模板布局，圆角间距随心调，拼出好看的图</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         <DropZone onFiles={onFiles} multiple>
           <div className="space-y-2">
             <p className="text-indigo-600 font-medium">{files.length > 0 ? `已选 ${files.length} 张，继续添加` : "拖拽或点击添加图片"}</p>
@@ -347,7 +347,7 @@ export default function StitchPage() {
               <div className="flex gap-3 overflow-x-auto pb-2">
                 {previews.map((url, i) => (
                   <div key={i} className="relative flex-shrink-0 group">
-                    <img src={url} alt="" className="h-16 w-16 object-cover rounded-xl border border-gray-200" />
+                    <img src={url} alt="" className="h-16 w-16 object-cover rounded-xl border border-gray-200 dark:border-gray-600" />
                     <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
                       <button onClick={() => moveFile(i, -1)} className="text-white text-xs bg-white/20 rounded px-1">←</button>
                       <button onClick={() => removeFile(i)} className="text-white text-xs bg-red-500/80 rounded px-1">✕</button>
@@ -361,7 +361,7 @@ export default function StitchPage() {
 
             {/* Layout selection */}
             <div>
-              <p className="text-sm text-gray-500 mb-3">选择布局</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">选择布局</p>
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                 {layouts.map((l, i) => (
                   <button key={i} onClick={() => setLayoutIdx(i)} className={`p-2 rounded-xl border-2 text-center transition-all ${layoutIdx === i ? "border-indigo-500 bg-indigo-50" : "border-gray-200 hover:border-gray-300"}`}>
@@ -374,7 +374,7 @@ export default function StitchPage() {
 
             {/* Preview */}
             {imgEls.length >= 2 && (
-              <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-100 flex justify-center p-4">
+              <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-100 flex justify-center p-4">
                 <canvas ref={canvasRef} className="max-w-full max-h-96 shadow-lg" />
               </div>
             )}
@@ -408,7 +408,7 @@ export default function StitchPage() {
                 </label>
                 <label className="block">
                   <span className="text-xs text-gray-400">输出宽度</span>
-                  <select value={outputSize} onChange={(e) => setOutputSize(+e.target.value)} className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm mt-1">
+                  <select value={outputSize} onChange={(e) => setOutputSize(+e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm mt-1">
                     <option value={720}>720px</option>
                     <option value={1080}>1080px</option>
                     <option value={1440}>1440px</option>
@@ -426,9 +426,9 @@ export default function StitchPage() {
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
-          <p className="font-semibold text-gray-900">拼接结果</p>
-          <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900 dark:text-white">拼接结果</p>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
             <img src={result} alt="stitched" className="w-full max-h-96 object-contain" />
           </div>
           <a href={result} download="collage.png" className="btn-primary inline-block">下载</a>

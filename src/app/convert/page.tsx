@@ -28,11 +28,11 @@ export default function ConvertPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">格式转换</h1>
-        <p className="text-gray-500 mt-2">PNG、JPG、WebP 格式自由互转</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">格式转换</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">PNG、JPG、WebP 格式自由互转</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         <DropZone onFiles={(f) => { setFile(f[0]); setResult(null); }}>
           {file && (
             <div className="space-y-2">
@@ -43,7 +43,7 @@ export default function ConvertPage() {
         </DropZone>
 
         <div>
-          <p className="text-sm text-gray-500 mb-3">目标格式</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">目标格式</p>
           <div className="flex gap-3">
             {formats.map((f) => (
               <button
@@ -63,9 +63,9 @@ export default function ConvertPage() {
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in flex items-center justify-between">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in flex items-center justify-between">
           <div>
-            <p className="font-semibold text-gray-900">{result.name}</p>
+            <p className="font-semibold text-gray-900 dark:text-white">{result.name}</p>
             <p className="text-sm text-gray-400 mt-0.5">{(result.size / 1024).toFixed(1)} KB</p>
           </div>
           <a href={result.url} download={result.name} className="btn-primary">下载</a>

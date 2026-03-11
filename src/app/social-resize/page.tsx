@@ -82,16 +82,16 @@ export default function SocialResizePage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">社交平台尺寸适配</h1>
-        <p className="text-gray-500 mt-2">一键生成各社交平台标准尺寸图片</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">社交平台尺寸适配</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">一键生成各社交平台标准尺寸图片</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
           <>
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-xl">
               <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-500 text-lg">🖼</div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
@@ -113,7 +113,7 @@ export default function SocialResizePage() {
                   return (
                     <button key={key} onClick={() => toggleSize(key)} className={`p-3 rounded-xl border-2 text-left transition-all ${isSelected ? "border-indigo-500 bg-indigo-50" : "border-gray-200 hover:border-gray-300"}`}>
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-sm font-semibold text-gray-900">{s.label}</p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{s.label}</p>
                         {isSelected && <span className="text-indigo-500">✓</span>}
                       </div>
                       <p className="text-xs text-gray-400">{s.w} × {s.h}</p>
@@ -134,7 +134,7 @@ export default function SocialResizePage() {
               <div>
                 <p className="text-xs text-gray-400 mb-2">背景色</p>
                 <div className="flex items-center gap-2">
-                  <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer" />
+                  <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-600 cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -148,16 +148,16 @@ export default function SocialResizePage() {
 
       {results.length > 0 && (
         <div className="mt-8 space-y-4 fade-in">
-          <p className="font-semibold text-gray-900">生成结果（{results.length} 张）</p>
+          <p className="font-semibold text-gray-900 dark:text-white">生成结果（{results.length} 张）</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {results.map((r, i) => (
-              <div key={i} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm space-y-3">
-                <div className="rounded-lg border border-gray-200 overflow-hidden bg-gray-50">
+              <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 shadow-sm space-y-3">
+                <div className="rounded-lg border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
                   <img src={r.url} alt={r.label} className="w-full h-40 object-contain" />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{r.label}</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">{r.label}</p>
                     <p className="text-xs text-gray-400">{r.w} × {r.h}</p>
                   </div>
                   <a href={r.url} download={`${r.label.replace(/\s+/g, "_")}_${r.w}x${r.h}.png`} className="btn-primary text-xs px-4 py-1.5">下载</a>

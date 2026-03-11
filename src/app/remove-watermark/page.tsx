@@ -182,11 +182,11 @@ export default function RemoveWatermarkPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">去水印</h1>
-        <p className="text-gray-500 mt-2">涂抹标记水印区域，智能填充修复</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">去水印</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">涂抹标记水印区域，智能填充修复</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
@@ -197,7 +197,7 @@ export default function RemoveWatermarkPage() {
                 <button onClick={clearMask} className="text-sm text-indigo-600 hover:underline">清除标记</button>
               </div>
 
-              <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50 flex justify-center">
+              <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50 flex justify-center">
                 <canvas
                   ref={canvasRef}
                   className="cursor-crosshair"
@@ -220,16 +220,16 @@ export default function RemoveWatermarkPage() {
               <button onClick={processWatermark} disabled={processing} className="btn-primary flex-1 py-3">
                 {processing ? "⏳ 处理中..." : "✨ 去除水印"}
               </button>
-              <button onClick={() => { setFile(null); setImgUrl(""); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+              <button onClick={() => { setFile(null); setImgUrl(""); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">重选</button>
             </div>
           </>
         )}
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
-          <p className="font-semibold text-gray-900">处理结果</p>
-          <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900 dark:text-white">处理结果</p>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
             <img src={result} alt="result" className="w-full max-h-72 object-contain" />
           </div>
           <a href={result} download="no_watermark.png" className="btn-primary inline-block">下载</a>

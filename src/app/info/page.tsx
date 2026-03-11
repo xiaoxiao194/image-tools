@@ -42,16 +42,16 @@ export default function InfoPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">图片信息</h1>
-        <p className="text-gray-500 mt-2">查看图片尺寸、大小、格式等详细信息</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">图片信息</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">查看图片尺寸、大小、格式等详细信息</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         <DropZone onFiles={onFile} />
 
         {info && (
           <div className="fade-in space-y-6">
-            <div className="rounded-xl border border-gray-200 overflow-hidden">
+            <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
               <img src={preview} alt="preview" className="w-full max-h-72 object-contain bg-gray-50" />
             </div>
 
@@ -65,7 +65,7 @@ export default function InfoPage() {
                 { label: "像素数", value: info.megapixels },
                 { label: "修改时间", value: info.lastModified },
               ].map((item) => (
-                <div key={item.label} className="p-3 bg-gray-50 rounded-xl">
+                <div key={item.label} className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl">
                   <p className="text-xs text-gray-400 mb-1">{item.label}</p>
                   <p className="text-sm font-medium text-gray-900 break-all">{item.value}</p>
                 </div>

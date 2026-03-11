@@ -40,11 +40,11 @@ export default function RemoveBgPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">AI 抠图</h1>
-        <p className="text-gray-500 mt-2">一键去除背景，AI 本地运行，无需上传服务器</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">AI 抠图</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">一键去除背景，AI 本地运行，无需上传服务器</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
@@ -52,13 +52,13 @@ export default function RemoveBgPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-xs text-gray-400 mb-2 text-center">原图</p>
-                <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+                <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
                   <img src={preview} alt="original" className="w-full h-48 object-contain" />
                 </div>
               </div>
               <div>
                 <p className="text-xs text-gray-400 mb-2 text-center">结果</p>
-                <div className="rounded-xl border border-gray-200 overflow-hidden h-48 flex items-center justify-center" style={{ backgroundImage: "linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)", backgroundSize: "20px 20px", backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px" }}>
+                <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden h-48 flex items-center justify-center" style={{ backgroundImage: "linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)", backgroundSize: "20px 20px", backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px" }}>
                   {result ? (
                     <img src={result} alt="result" className="w-full h-48 object-contain" />
                   ) : (
@@ -81,7 +81,7 @@ export default function RemoveBgPage() {
               <button onClick={removeBg} disabled={processing} className="btn-primary flex-1 py-3">
                 {processing ? "⏳ 处理中..." : "✨ 一键去背景"}
               </button>
-              <button onClick={() => { setFile(null); setPreview(""); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+              <button onClick={() => { setFile(null); setPreview(""); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">重选</button>
             </div>
 
             {result && (

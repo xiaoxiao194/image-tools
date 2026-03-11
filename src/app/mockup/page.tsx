@@ -155,16 +155,16 @@ export default function MockupPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">截图美化</h1>
-        <p className="text-gray-500 mt-2">添加设备边框、阴影和渐变背景，让截图更专业</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">截图美化</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">添加设备边框、阴影和渐变背景，让截图更专业</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
           <>
-            <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-100 flex justify-center p-2">
+            <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-100 flex justify-center p-2">
               <canvas ref={canvasRef} className="max-w-full" />
             </div>
 
@@ -205,16 +205,16 @@ export default function MockupPage() {
 
             <div className="flex gap-3">
               <button onClick={generate} className="btn-primary flex-1 py-3">生成美化图</button>
-              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">重选</button>
             </div>
           </>
         )}
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
-          <p className="font-semibold text-gray-900">美化结果</p>
-          <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900 dark:text-white">美化结果</p>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
             <img src={result} alt="mockup" className="w-full object-contain" />
           </div>
           <a href={result} download="mockup.png" className="btn-primary inline-block">下载</a>

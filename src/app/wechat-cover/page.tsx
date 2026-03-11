@@ -96,28 +96,28 @@ export default function WechatCoverPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12 fade-in">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">公众号封面生成</h1>
-        <p className="text-gray-500 mt-2">一键生成公众号标准尺寸封面图</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">公众号封面生成</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">一键生成公众号标准尺寸封面图</p>
       </div>
 
-      <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm space-y-6">
         {!file ? (
           <DropZone onFiles={onFile} />
         ) : (
           <>
             <div>
-              <p className="text-sm text-gray-500 mb-3">封面类型</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">封面类型</p>
               <div className="grid grid-cols-3 gap-3">
                 {covers.map((c, i) => (
                   <button key={i} onClick={() => setSelected(i)} className={`p-3 rounded-xl border-2 text-left transition-all ${selected === i ? "border-indigo-500 bg-indigo-50" : "border-gray-200 hover:border-gray-300"}`}>
-                    <p className="text-sm font-semibold text-gray-900">{c.label}</p>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{c.label}</p>
                     <p className="text-xs text-gray-400">{c.w}×{c.h} ({c.desc})</p>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-100 flex justify-center p-4">
+            <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-100 flex justify-center p-4">
               <canvas ref={canvasRef} className="max-w-full shadow-lg rounded-lg" />
             </div>
 
@@ -132,7 +132,7 @@ export default function WechatCoverPage() {
               <div>
                 <p className="text-xs text-gray-400 mb-2">背景色</p>
                 <div className="flex items-center gap-2">
-                  <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 cursor-pointer" />
+                  <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-600 cursor-pointer" />
                   <span className="text-sm text-gray-500">{bgColor}</span>
                 </div>
               </div>
@@ -140,16 +140,16 @@ export default function WechatCoverPage() {
 
             <div className="flex gap-3">
               <button onClick={generate} className="btn-primary flex-1 py-3">生成封面</button>
-              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">重选</button>
+              <button onClick={() => { setFile(null); setImgEl(null); setResult(null); }} className="px-6 py-3 rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">重选</button>
             </div>
           </>
         )}
       </div>
 
       {result && (
-        <div className="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm fade-in space-y-4">
-          <p className="font-semibold text-gray-900">生成结果 <span className="text-sm text-gray-400 font-normal ml-2">{covers[selected].w}×{covers[selected].h}</span></p>
-          <div className="rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm fade-in space-y-4">
+          <p className="font-semibold text-gray-900 dark:text-white">生成结果 <span className="text-sm text-gray-400 font-normal ml-2">{covers[selected].w}×{covers[selected].h}</span></p>
+          <div className="rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden bg-gray-50">
             <img src={result} alt="cover" className="w-full object-contain" />
           </div>
           <a href={result} download={`cover_${covers[selected].w}x${covers[selected].h}.png`} className="btn-primary inline-block">下载</a>
