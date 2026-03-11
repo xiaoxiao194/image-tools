@@ -1,4 +1,6 @@
-const icons: Record<string, JSX.Element> = {
+import React from "react";
+
+const icons: Record<string, React.ReactNode> = {
   compress: (
     <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
       <path d="M12 3v4m0 10v4M8 7l4 4 4-4M8 17l4-4 4 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
