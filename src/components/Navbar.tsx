@@ -28,7 +28,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 glass-nav">
+    <nav className="sticky top-0 z-[100] glass-nav">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
           <img src="/logo.svg" alt="PhotoLab" className="w-9 h-9 rounded-xl" />
